@@ -1,0 +1,50 @@
+services:
+  site:
+    image: nginx:1.26
+    container_name: multi-site-root.local
+    volumes:
+      # Mount source-code for development
+      - ./:/app
+      - ./docker/default.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - '${APP_PORT:-8090}:80'
+    restart: unless-stopped
+    environment:
+      - VIRTUAL_HOST=multi-site.local
+  site-bar:
+    image: nginx:1.26
+    container_name: multi-site-bar.local
+    volumes:
+      # Mount source-code for development
+      - ./:/app
+      - ./docker/site-bar.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - '${APP_PORT:-8091}:80'
+    restart: unless-stopped
+    environment:
+      - VIRTUAL_HOST=multi-site.local
+      - VIRTUAL_PATH=/bar
+  site-foo:
+    image: nginx:1.26
+    container_name: multi-site-foo.local
+    volumes:
+      # Mount source-code for development
+      - ./:/app
+      - ./docker/site-foo.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - '${APP_PORT:-8092}:80'
+    restart: unless-stopped
+    environment:
+      - VIRTUAL_HOST=multi-site.local
+      - VIRTUAL_PATH=/foo
+  php:
+    image: php:8.3-fpm-alpine
+    container_name: multi-site.local.fpm
+    volumes:
+      # Mount source-code for development
+      - ./:/app:delegated
+    restart: unless-stopped
+networks:
+  default:
+    name: nginx-proxy
+    external: true
