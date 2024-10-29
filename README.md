@@ -33,6 +33,8 @@ You can then access the application through the following URLs:
     http://multi-site.local/bar/home/
     http://multi-site.local/foo/
     http://multi-site.local/foo/home/
+    http://multi-site.local/goo/
+    http://multi-site.local/moo/
 
 ## References
 
