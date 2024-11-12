@@ -28,6 +28,16 @@ Start the container
 
 You can then access the application through the following URLs:
 
+    http://127.0.0.1:8090
+    http://127.0.0.1:8091/bar/
+    http://127.0.0.1:8091/bar/home/
+    http://127.0.0.1:8092/foo/
+    http://127.0.0.1:8092/foo/home/
+    http://127.0.0.1:8092/goo/
+    http://127.0.0.1:8092/moo/
+
+OR
+
     http://multi-site.local
     http://multi-site.local/bar/
     http://multi-site.local/bar/home/

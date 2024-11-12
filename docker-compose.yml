@@ -1,6 +1,6 @@
 services:
   site:
-    image: nginx:1.26
+    image: nginx:1.27.2-alpine
     container_name: multi-site-root.local
     volumes:
       # Mount source-code for development
@@ -12,7 +12,7 @@ services:
     environment:
       - VIRTUAL_HOST=multi-site.local
   site-bar:
-    image: nginx:1.26
+    image: nginx:1.27.2-alpine
     container_name: multi-site-bar.local
     volumes:
       # Mount source-code for development
@@ -25,7 +25,7 @@ services:
       - VIRTUAL_HOST=multi-site.local
       - VIRTUAL_PATH=/bar
   site-foo:
-    image: nginx:1.26
+    image: nginx:1.27.2-alpine
     container_name: multi-site-foo.local
     volumes:
       # Mount source-code for development
